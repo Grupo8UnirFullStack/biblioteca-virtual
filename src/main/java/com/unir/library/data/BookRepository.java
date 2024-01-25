@@ -1,2 +1,4 @@
-package com.unir.library.data;public class ProductRepository {
+package com.unir.library.data;
+
+public class BookRepository {
 }

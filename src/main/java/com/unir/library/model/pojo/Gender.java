@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="gender1")
+@Table(name="gender")
 @Getter
 @Setter
 @AllArgsConstructor

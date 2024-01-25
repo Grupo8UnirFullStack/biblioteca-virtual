@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-public class BookController {
+public class BooksController {
     @GetMapping("/")
     public String index(){
         log.info("Estoy ejecutando el controlador rest");

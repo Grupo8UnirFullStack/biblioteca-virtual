@@ -1,2 +1,4 @@
-package com.unir.library.service;public interface ProductsService {
+package com.unir.library.service;
+
+public interface BooksService {
 }
