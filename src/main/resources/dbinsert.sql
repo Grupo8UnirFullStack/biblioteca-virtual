@@ -160,6 +160,13 @@ INSERT INTO user (name, email, dni, birth_date) VALUES ('Rosa González', 'rosag
 INSERT INTO user (name, email, dni, birth_date) VALUES ('Miguel López', 'miguell@hotmail.es', '0990123156', '1984-03-25');
 INSERT INTO user (name, email, dni, birth_date) VALUES ('Carmen Ruiz', 'carmenr@gmail.com', '1212345478', '1991-08-27');
 INSERT INTO user (name, email, dni, birth_date) VALUES ('Alejandro Pérez', 'alejandrop@gmail.com', '0789012445', '1985-04-11');
+INSERT INTO user (name, email, dni, birth_date) VALUES ('Roberto Ruiz','robert.solano@yahoo.com','1714564147','1998-01-02');
+INSERT INTO user (name, email, dni, birth_date) VALUES ('Eduardo Acosta','eduardo.acosta@hotmail.com','0014567419','1989-03-12');
+INSERT INTO user (name, email, dni, birth_date) VALUES ('Gabriel Suarez','gabriel.suarez@hotmail.com','171464249','1994-11-03');
+INSERT INTO user (name, email, dni, birth_date) VALUES ('Fernando Andrade','l.andrade741@gmail.com','0051245622','1992-02-20');
+INSERT INTO user (name, email, dni, birth_date) VALUES ('Monica Alvarado','monica.living@yahoo.com','1702145896','1977-11-05');
+INSERT INTO user (name, email, dni, birth_date) VALUES ('Myriam Benalcazar','m.benalcazar@hotmail.com','171409215','1998-05-29');
+INSERT INTO user (name, email, dni, birth_date) VALUES ('Vanessa Aldaz','vane.dazhid@gmail.com','1804567090','2001-11-11');
 
 INSERT INTO reservation (user_id, reservation_date) VALUES (1, '2023-01-01');
 INSERT INTO reservation (user_id, reservation_date) VALUES (2, '2023-02-15');
