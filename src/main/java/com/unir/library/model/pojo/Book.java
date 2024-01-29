@@ -31,4 +31,8 @@ public class Book {
 
     @Column(name = "stock")
     private int stock;
+    @OneToOne
+    private Image image;
+    @OneToOne
+    private Auth auth;
 }
