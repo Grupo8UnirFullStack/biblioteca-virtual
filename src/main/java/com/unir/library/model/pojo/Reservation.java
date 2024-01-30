@@ -18,8 +18,10 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name="user_id")
-    private int user_id;
+    @Id
+    @ManyToOne
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    private User user_id;
 
     @Column(name = "reservation_date")
     private Date reservation_date;

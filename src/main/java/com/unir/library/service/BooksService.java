@@ -1,7 +1,6 @@
 package com.unir.library.service;
 
 import com.unir.library.model.pojo.Book;
-import com.unir.library.model.pojo.BookDto;
 import com.unir.library.model.request.CreateBookRequest;
 
 

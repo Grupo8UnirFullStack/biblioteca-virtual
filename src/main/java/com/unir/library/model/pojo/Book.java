@@ -31,8 +31,16 @@ public class Book {
 
     @Column(name = "stock")
     private int stock;
+
     @OneToOne
+    @JoinColumn(name="image_id", referencedColumnName = "id")
     private Image image;
+
     @OneToOne
+    @JoinColumn(name="auth_id", referencedColumnName = "id")
     private Auth auth;
+
+    @ManyToOne
+    @JoinColumn(name = "gender_id", referencedColumnName = "id")
+    private Gender gender_id;
 }

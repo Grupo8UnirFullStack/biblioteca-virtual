@@ -3,7 +3,6 @@ package com.unir.library.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unir.library.data.BookRepository;
 import com.unir.library.model.pojo.Book;
-import com.unir.library.model.pojo.BookDto;
 import com.unir.library.model.request.CreateBookRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -12,10 +12,14 @@ import lombok.*;
 @Builder
 @ToString
 public class ReservationDetail {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
 
-    @Column(name = "book_id")
-    private int book_id;
+    @Id
+    @OneToOne
+    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    private Reservation reservation_id;
+
+    @Id
+    @OneToOne
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private Book book_id;
 }
