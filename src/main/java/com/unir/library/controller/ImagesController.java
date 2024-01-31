@@ -25,16 +25,16 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@Tag(name = "Products Controller", description = "Microservicio encargado de exponer operaciones CRUD sobre productos alojados en una base de datos en memoria.")
+@Tag(name = "Images Controller", description = "Microservicio encargado de exponer operaciones CRUD sobre imagenes alojadas en una base de datos en memoria.")
 public class ImagesController {
 
     private final ImagesService service;
 
     @GetMapping("/images")
     @Operation(
-            operationId = "Obtener productos",
+            operationId = "Obtener imagenes",
             description = "Operacion de lectura",
-            summary = "Se devuelve una lista de todos los productos almacenados en la base de datos.")
+            summary = "Se devuelve una lista de todos las imagenes almacenados en la base de datos.")
     @ApiResponse(
             responseCode = "200",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = Image.class)))
@@ -46,31 +46,31 @@ public class ImagesController {
     {
 
         log.info("headers: {}", headers);
-        List<Image> products = service.getImages(path);
+        List<Image> images = service.getImages(path);
 
-        return ResponseEntity.ok(Objects.requireNonNullElse(products, Collections.emptyList()));
+        return ResponseEntity.ok(Objects.requireNonNullElse(images, Collections.emptyList()));
     }
 
 
     @GetMapping("/image/{imageId}")
     @Operation(
-            operationId = "Obtener un producto",
+            operationId = "Obtener una imagen",
             description = "Operacion de lectura",
-            summary = "Se devuelve un producto a partir de su identificador.")
+            summary = "Se devuelve una imagen a partir de su identificador.")
     @ApiResponse(
             responseCode = "200",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = Image.class)))
     @ApiResponse(
             responseCode = "404",
             content = @Content(mediaType = "application/json", schema = @Schema()),
-            description = "No se ha encontrado el producto con el identificador indicado.")
+            description = "No se ha encontrado la imagen con el identificador indicado.")
     public ResponseEntity<Image> getImage(@PathVariable String imageId) {
 
-        log.info("Request received for product {}", imageId);
-        Image product = service.getImage(imageId);
+        log.info("Request received for image {}", imageId);
+        Image image = service.getImage(imageId);
 
-        if (product != null) {
-            return ResponseEntity.ok(product);
+        if (image != null) {
+            return ResponseEntity.ok(image);
         } else {
             log.info("No se ha encontrado la imagen");
             return ResponseEntity.notFound().build();
