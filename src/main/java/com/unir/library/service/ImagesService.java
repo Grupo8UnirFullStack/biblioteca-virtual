@@ -13,7 +13,7 @@ public interface ImagesService {
 
     Boolean removeImage(String imageId);
 
-    Image createImage (CreateImageRequest request);
+    Image createImage(CreateImageRequest request);
 
     Image updateImage(String ImageId, String updateRequest);
 
