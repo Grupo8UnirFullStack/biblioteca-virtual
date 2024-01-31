@@ -1,7 +1,11 @@
 package com.unir.library.data;
 
+import com.unir.library.data.utils.SearchCriteria;
+import com.unir.library.data.utils.SearchOperation;
+import com.unir.library.data.utils.SearchStatement;
 import com.unir.library.model.pojo.Book;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,5 +24,27 @@ public class BookRepository {
     }
 
 
+    public List<Book> search(String title, String isbn, String description, Integer year, Integer stock) {
+        SearchCriteria<Book> spec = new SearchCriteria<>();
+        if (StringUtils.isNotBlank(title)) {
+            spec.add(new SearchStatement("title", title, SearchOperation.MATCH));
+        }
 
+        if (StringUtils.isNotBlank(isbn)) {
+            spec.add(new SearchStatement("isbn", isbn, SearchOperation.EQUAL));
+        }
+
+        if (StringUtils.isNotBlank(description)) {
+            spec.add(new SearchStatement("description", description, SearchOperation.MATCH));
+        }
+
+        if (year != null) {
+            spec.add(new SearchStatement("year", year, SearchOperation.EQUAL));
+        }
+
+        if (stock != null) {
+            spec.add(new SearchStatement("stock", stock, SearchOperation.EQUAL));
+        }
+        return repository.findAll(spec);
+    }
 }

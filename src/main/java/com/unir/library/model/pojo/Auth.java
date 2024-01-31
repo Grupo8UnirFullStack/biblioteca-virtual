@@ -14,7 +14,7 @@ import lombok.*;
 public class Auth {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column(name="name", unique = true)
     private String name;

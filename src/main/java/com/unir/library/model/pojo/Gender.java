@@ -21,7 +21,7 @@ import lombok.*;
 public class Gender {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column(name="description", unique = true)
     private String description;

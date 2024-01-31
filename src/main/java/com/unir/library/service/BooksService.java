@@ -1,13 +1,14 @@
 package com.unir.library.service;
 
 import com.unir.library.model.pojo.Book;
+import com.unir.library.model.pojo.BookDto;
 import com.unir.library.model.request.CreateBookRequest;
 
 
 import java.util.List;
 
 public interface BooksService {
-    List<Book> getBooks(String title, String isbn, String description, int year, int stock);
+    List<Book> getBooks(String title, String isbn, String description, Integer year, Integer stock);
 
     Book getBook(String bookId);
 

@@ -15,7 +15,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column(name = "title")
     private String title;
@@ -27,10 +27,10 @@ public class Book {
     private String description;
 
     @Column(name = "year")
-    private int year;
+    private Integer year;
 
     @Column(name = "stock")
-    private int stock;
+    private Integer stock;
 
     @OneToOne
     @JoinColumn(name="image_id", referencedColumnName = "id")

@@ -16,7 +16,7 @@ import java.sql.Date;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Id
     @ManyToOne

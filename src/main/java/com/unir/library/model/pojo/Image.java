@@ -13,7 +13,7 @@ import lombok.*;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column(name="path", unique = true)
     private String path;
