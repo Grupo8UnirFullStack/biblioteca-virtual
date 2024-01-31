@@ -3,6 +3,7 @@ package com.unir.library.data;
 import com.unir.library.data.utils.SearchCriteria;
 import com.unir.library.data.utils.SearchOperation;
 import com.unir.library.data.utils.SearchStatement;
+import com.unir.library.model.pojo.Auth;
 import com.unir.library.model.pojo.Book;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -24,14 +25,14 @@ public class BookRepository {
     }
 
 
-    public List<Book> search(String title, String isbn, String description, Integer year, Integer stock) {
+    public List<Book> search(String title, String isbn, String description, Integer year, Integer stock, Integer authid) {
         SearchCriteria<Book> spec = new SearchCriteria<>();
         if (StringUtils.isNotBlank(title)) {
             spec.add(new SearchStatement("title", title, SearchOperation.MATCH));
         }
 
         if (StringUtils.isNotBlank(isbn)) {
-            spec.add(new SearchStatement("isbn", isbn, SearchOperation.EQUAL));
+            spec.add(new SearchStatement("isbn", isbn, SearchOperation.MATCH));
         }
 
         if (StringUtils.isNotBlank(description)) {
@@ -39,11 +40,15 @@ public class BookRepository {
         }
 
         if (year != null) {
-            spec.add(new SearchStatement("year", year, SearchOperation.EQUAL));
+            spec.add(new SearchStatement("year", year, SearchOperation.MATCH));
         }
 
         if (stock != null) {
-            spec.add(new SearchStatement("stock", stock, SearchOperation.EQUAL));
+            spec.add(new SearchStatement("stock", stock, SearchOperation.MATCH));
+        }
+
+        if (authid != null) {
+            spec.add(new SearchStatement("authid", authid, SearchOperation.EQUAL));
         }
         return repository.findAll(spec);
     }

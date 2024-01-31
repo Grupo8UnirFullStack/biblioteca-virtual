@@ -1,5 +1,6 @@
 package com.unir.library.controller;
 
+import com.unir.library.model.pojo.Auth;
 import com.unir.library.model.pojo.Book;
 import com.unir.library.service.BooksService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,10 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -41,19 +39,30 @@ public class BooksController {
     public ResponseEntity<List<Book>> getBooks(
             @RequestHeader Map<String, String> headers,
             @Parameter(name = "title", description = "Titulo del libro")
+            @RequestParam(required = false)
             String title,
             @Parameter(name = "isbn", description = "Codigo unico del libro")
+            @RequestParam(required = false)
             String isbn,
             @Parameter(name = "description", description = "Descripcion del libro")
+            @RequestParam(required = false)
             String description,
             @Parameter(name = "year", description = "Anio de publicacion del libro")
+            @RequestParam(required = false)
             Integer year,
             @Parameter(name = "stock", description = "Existencias del libro")
-            Integer stock)
+            @RequestParam(required = false)
+            Integer stock,
+            @Parameter(name = "name", description = "Nombre del autor del libro")
+            @RequestParam(required = false)
+            String name,
+            @Parameter(name = "lastname", description = "ID del autor del libro")
+            @RequestParam(required = false)
+            String lastname)
     {
 
         log.info("headers: {}", headers);
-        List<Book> products = service.getBooks( title,  isbn,  description,  year,  stock);
+        List<Book> products = service.getBooks(title, isbn, description, year, stock, name, lastname);
 
         return ResponseEntity.ok(Objects.requireNonNullElse(products, Collections.emptyList()));
     }

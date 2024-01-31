@@ -1,5 +1,6 @@
 package com.unir.library.data;
 
+import com.unir.library.model.pojo.Auth;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.List;
@@ -16,4 +17,7 @@ interface BookJpaRepository extends JpaRepository<Book, Long>, JpaSpecificationE
 
     List<Book> findByYear(Integer year);
 
+    List<Book> findByAuthid(Integer auth);
+
+    List<Book> findByGenderid(Integer auth);
 }

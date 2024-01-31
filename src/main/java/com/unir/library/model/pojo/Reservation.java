@@ -20,9 +20,9 @@ public class Reservation {
 
     @Id
     @ManyToOne
-    @JoinColumn(name="user_id", referencedColumnName = "id")
-    private User user_id;
+    @JoinColumn(name="userid", referencedColumnName = "id")
+    private User userid;
 
-    @Column(name = "reservation_date")
-    private Date reservation_date;
+    @Column(name = "reservationdate")
+    private Date reservationdate;
 }

@@ -369,3 +369,18 @@ INSERT INTO reservation_detail (reservation_id, book_id) VALUES (97, 47);
 INSERT INTO reservation_detail (reservation_id, book_id) VALUES (98, 48);
 INSERT INTO reservation_detail (reservation_id, book_id) VALUES (99, 49);
 INSERT INTO reservation_detail (reservation_id, book_id) VALUES (100, 50);
+
+ALTER TABLE auth RENAME COLUMN last_name TO lastname;
+ALTER TABLE book RENAME COLUMN auth_id TO authid;
+ALTER TABLE book RENAME COLUMN gender_id TO genderid;
+ALTER TABLE book RENAME COLUMN image_id TO imageid;
+
+ALTER TABLE reservation RENAME COLUMN user_id TO userid;
+ALTER TABLE reservation RENAME COLUMN reservation_date TO reservationdate;
+
+ALTER TABLE reservation_detail RENAME TO reservationdetail;
+
+ALTER TABLE reservationdetail RENAME COLUMN reservation_id TO reservationid;
+ALTER TABLE reservationdetail RENAME COLUMN book_id TO bookid;
+
+ALTER TABLE user RENAME COLUMN birth_date TO birthdate

@@ -19,7 +19,7 @@ public class Auth {
     @Column(name="name", unique = true)
     private String name;
 
-    @Column(name="last_name")
-    private String last_name;
+    @Column(name="lastname")
+    private String lastname;
 
 }

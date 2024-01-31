@@ -32,15 +32,12 @@ public class Book {
     @Column(name = "stock")
     private Integer stock;
 
-    @OneToOne
-    @JoinColumn(name="image_id", referencedColumnName = "id")
-    private Image image;
+    @JoinColumn(name="imageid", referencedColumnName = "id")
+    private Integer imageid;
 
-    @OneToOne
-    @JoinColumn(name="auth_id", referencedColumnName = "id")
-    private Auth auth;
+    @JoinColumn(name="authid", referencedColumnName = "id")
+    private Integer authid;
 
-    @ManyToOne
-    @JoinColumn(name = "gender_id", referencedColumnName = "id")
-    private Gender gender_id;
+    @JoinColumn(name = "genderid", referencedColumnName = "id")
+    private Integer genderid;
 }

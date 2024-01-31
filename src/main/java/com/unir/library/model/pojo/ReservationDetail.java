@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="reservation_detail")
+@Table(name="reservationdetail")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,11 +15,11 @@ public class ReservationDetail {
 
     @Id
     @OneToOne
-    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
-    private Reservation reservation_id;
+    @JoinColumn(name = "reservationid", referencedColumnName = "id")
+    private Reservation reservationId;
 
     @Id
     @OneToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
-    private Book book_id;
+    @JoinColumn(name = "bookid", referencedColumnName = "id")
+    private Book bookd;
 }

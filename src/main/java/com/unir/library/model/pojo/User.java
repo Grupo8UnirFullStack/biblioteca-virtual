@@ -27,6 +27,6 @@ public class User {
     @Column(name = "dni")
     private String dni;
 
-    @Column(name = "birth_date")
-    private Date birth_date;
+    @Column(name = "birthdate")
+    private Date birthdate;
 }
