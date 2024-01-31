@@ -15,7 +15,7 @@ public interface GendersService {
 
     Gender createGender(CreateGenderRequest request);
 
-    Gender updateGender(String bookId, String updateRequest);
+    Gender updateGender(String genderId, String updateRequest);
 
-    Gender updateGender(String bookId, GenderDto updateRequest);
+    Gender updateGender(String genderId, GenderDto updateRequest);
 }

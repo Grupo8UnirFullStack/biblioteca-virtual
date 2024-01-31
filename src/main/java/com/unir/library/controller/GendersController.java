@@ -2,6 +2,8 @@ package com.unir.library.controller;
 
 import com.unir.library.model.pojo.Book;
 import com.unir.library.model.pojo.Gender;
+import com.unir.library.model.pojo.GenderDto;
+import com.unir.library.model.request.CreateGenderRequest;
 import com.unir.library.service.GendersService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -11,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,4 +77,121 @@ public class GendersController {
         }
 
     }
+
+
+    @PostMapping("/genders")
+    @Operation(
+            operationId = "Insertar un género",
+            description = "Operacion de escritura",
+            summary = "Se crea un género a partir de sus datos.",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Datos del género a crear.",
+                    required = true,
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = CreateGenderRequest.class))))
+    @ApiResponse(
+            responseCode = "201",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Gender.class)))
+    @ApiResponse(
+            responseCode = "400",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class)),
+            description = "Datos incorrectos introducidos.")
+    @ApiResponse(
+            responseCode = "404",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class)),
+            description = "No se ha encontrado el producto con el identificador indicado.")
+    public ResponseEntity<Gender> addProduct(@RequestBody CreateGenderRequest request) {
+
+        Gender createdGender = service.createGender(request);
+
+        if (createdGender != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdGender);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+    @PatchMapping("/genders/{genderId}")
+    @Operation(
+            operationId = "Modificar parcialmente un género",
+            description = "RFC 7386. Operacion de escritura",
+            summary = "RFC 7386. Se modifica parcialmente un género.",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Datos del género a crear.",
+                    required = true,
+                    content = @Content(mediaType = "application/merge-patch+json", schema = @Schema(implementation = String.class))))
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Gender.class)))
+    @ApiResponse(
+            responseCode = "400",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class)),
+            description = "Producto inválido o datos incorrectos introducidos.")
+    public ResponseEntity<Gender> patchGender(@PathVariable String genderId, @RequestBody String patchBody) {
+
+        Gender patched = service.updateGender(genderId, patchBody);
+        if (patched != null) {
+            return ResponseEntity.ok(patched);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+
+    @PutMapping("/genders/{genderId}")
+    @Operation(
+            operationId = "Modificar totalmente un género",
+            description = "Operacion de escritura",
+            summary = "Se modifica totalmente un género.",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Datos del género a actualizar.",
+                    required = true,
+                    content = @Content(mediaType = "application/merge-patch+json", schema = @Schema(implementation = GenderDto.class))))
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Gender.class)))
+    @ApiResponse(
+            responseCode = "404",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class)),
+            description = "Género no encontrado.")
+    public ResponseEntity<Gender> updateGender(@PathVariable String genderId, @RequestBody GenderDto body) {
+
+        Gender updated = service.updateGender(genderId, body);
+        if (updated != null) {
+            return ResponseEntity.ok(updated);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
+    @DeleteMapping("/genders/{genderId}")
+    @Operation(
+            operationId = "Eliminar un genero",
+            description = "Operacion de escritura",
+            summary = "Se elimina un genero a partir de su identificador.")
+    @ApiResponse(
+            responseCode = "200",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class)))
+    @ApiResponse(
+            responseCode = "404",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class)),
+            description = "No se ha encontrado el genero con el identificador indicado.")
+    public ResponseEntity<Void> deleteGender(@PathVariable String genderId) {
+
+        Boolean removed = service.removeGender(genderId);
+
+        if (Boolean.TRUE.equals(removed)) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
+
+
+
 }

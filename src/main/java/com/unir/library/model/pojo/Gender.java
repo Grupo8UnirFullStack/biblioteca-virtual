@@ -26,4 +26,7 @@ public class Gender {
     @Column(name="description", unique = true)
     private String description;
 
+    public void update(GenderDto genderDto) {
+        this.description = genderDto.getDescription();
+    }
 }

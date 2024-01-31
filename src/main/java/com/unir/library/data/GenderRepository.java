@@ -32,4 +32,12 @@ public class GenderRepository {
 
         return repository.findAll(spec);
     }
+
+    public void delete(Gender gender) {
+        repository.delete(gender);
+    }
+
+    public Gender save(Gender gender) {
+        return repository.save(gender);
+    }
 }

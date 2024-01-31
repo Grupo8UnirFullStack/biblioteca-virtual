@@ -8,6 +8,6 @@ import java.util.List;
 
 interface ImageJpaRepository extends JpaRepository<Image, Long>, JpaSpecificationExecutor<Image> {
 
-    List<Image> findByTitle(String path);
+    List<Image> findByPath(String path);
 
 }
