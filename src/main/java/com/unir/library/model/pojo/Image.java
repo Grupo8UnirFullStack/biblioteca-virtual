@@ -17,4 +17,9 @@ public class Image {
 
     @Column(name="path", unique = true)
     private String path;
+
+    public void update(ImageDto imageDto) {
+        this.path = imageDto.getPath();
+    }
+
 }

@@ -41,7 +41,7 @@ public class ImagesController {
     public ResponseEntity<List<Image>> getImages(
             @RequestHeader Map<String, String> headers,
             @Parameter(name = "path", description = "Path del libro")
-            String path)
+            @RequestParam(required = false) String path)
 
     {
 
