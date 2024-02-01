@@ -1,6 +1,5 @@
 package com.unir.library.controller;
 
-import com.unir.library.model.pojo.Book;
 import com.unir.library.model.pojo.Gender;
 import com.unir.library.model.pojo.GenderDto;
 import com.unir.library.model.request.CreateGenderRequest;
@@ -38,7 +37,7 @@ public class GendersController {
             summary = "Se devuelve una lista de todos los generos almacenados en la base de datos.")
     @ApiResponse(
             responseCode = "200",
-            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Book.class)))
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Gender.class)))
     public ResponseEntity<List<Gender>> getGenders(
             @RequestHeader Map<String, String> headers,
             @Parameter(name = "description", description = "Nombre del Género de Pélicula")
@@ -99,7 +98,7 @@ public class GendersController {
             responseCode = "404",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class)),
             description = "No se ha encontrado el producto con el identificador indicado.")
-    public ResponseEntity<Gender> addProduct(@RequestBody CreateGenderRequest request) {
+    public ResponseEntity<Gender> addGender(@RequestBody CreateGenderRequest request) {
 
         Gender createdGender = service.createGender(request);
 
