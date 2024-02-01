@@ -67,7 +67,7 @@ public class BooksController {
     }
 
 
-    @GetMapping("/book/{bookId}")
+    @GetMapping("/books/{bookId}")
     @Operation(
             operationId = "Obtener un producto",
             description = "Operacion de lectura",

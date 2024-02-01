@@ -4,6 +4,7 @@ import com.unir.library.data.ImageJpaRepository;
 import com.unir.library.data.utils.SearchCriteria;
 import com.unir.library.data.utils.SearchOperation;
 import com.unir.library.data.utils.SearchStatement;
+import com.unir.library.model.pojo.Gender;
 import com.unir.library.model.pojo.Image;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -31,5 +32,12 @@ public class ImageRepository {
             spec.add(new SearchStatement("path", path, SearchOperation.MATCH));
         }
         return repository.findAll(spec);
+    }
+    public void delete(Image image) {
+        repository.delete(image);
+    }
+
+    public Image save(Image image) {
+        return repository.save(image);
     }
 }
