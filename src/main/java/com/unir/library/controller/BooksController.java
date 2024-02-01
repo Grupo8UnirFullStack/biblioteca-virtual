@@ -1,6 +1,5 @@
 package com.unir.library.controller;
 
-import com.unir.library.model.pojo.Auth;
 import com.unir.library.model.pojo.Book;
 import com.unir.library.service.BooksService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,16 +22,16 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@Tag(name = "Products Controller", description = "Microservicio encargado de exponer operaciones CRUD sobre productos alojados en una base de datos en memoria.")
+@Tag(name = "Books Controller", description = "Microservicio encargado de exponer operaciones CRUD sobre libros alojados en una base de datos en memoria.")
 public class BooksController {
 
     private final BooksService service;
 
     @GetMapping("/books")
     @Operation(
-            operationId = "Obtener productos",
+            operationId = "Obtener libros",
             description = "Operacion de lectura",
-            summary = "Se devuelve una lista de todos los productos almacenados en la base de datos.")
+            summary = "Se devuelve una lista de todos los libros almacenados en la base de datos.")
     @ApiResponse(
             responseCode = "200",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = Book.class)))
@@ -93,4 +92,10 @@ public class BooksController {
         }
 
     }
+
+
+
+
+
+
 }
