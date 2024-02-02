@@ -1,6 +1,10 @@
 package com.unir.library.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatchException;
+import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import com.unir.library.data.AuthRepository;
 import com.unir.library.data.BookRepository;
 import com.unir.library.model.pojo.Auth;
@@ -55,21 +59,73 @@ public class BooksServiceImpl implements BooksService {
 
     @Override
     public Boolean removeBook(String bookId) {
-        return null;
+        Book book = repository.getById(Long.valueOf(bookId));
+
+        if (book != null) {
+            repository.delete(book);
+            return Boolean.TRUE;
+        } else {
+            return Boolean.FALSE;
+        }
     }
 
     @Override
     public Book createBook(CreateBookRequest request) {
-        return null;
+        //Otra opcion: Jakarta Validation: https://www.baeldung.com/java-validation
+        if (request != null && StringUtils.hasLength(request.getTitle().trim())
+                && StringUtils.hasLength(request.getIsbn().trim())
+                && StringUtils.hasLength(request.getDescription().trim())
+                && request.getYear() != null && request.getStock() != null
+                && request.getAuthid() != null && request.getImageid() != null
+                && request.getGenderid() != null) {
+
+            Book book = Book.builder()
+                    .title(request.getTitle())
+                    .isbn(request.getIsbn())
+                    .description(request.getDescription())
+                    .year(request.getYear())
+                    .stock(request.getStock())
+                    .authid(request.getAuthid())
+                    .imageid(request.getImageid())
+                    .genderid(request.getGenderid())
+                    .build();
+
+            return repository.save(book);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Book updateBook(String bookId, String updateRequest) {
-        return null;
+    public Book updateBook(String bookId, String request) {
+        //PATCH se implementa en este caso mediante Merge Patch: https://datatracker.ietf.org/doc/html/rfc7386
+        Book book = repository.getById(Long.valueOf(bookId));
+        if (book != null) {
+            try {
+                JsonMergePatch jsonMergePatch = JsonMergePatch.fromJson(objectMapper.readTree(request));
+                JsonNode target = jsonMergePatch.apply(objectMapper.readTree(objectMapper.writeValueAsString(book)));
+                Book patched = objectMapper.treeToValue(target, Book.class);
+                repository.save(patched);
+                return patched;
+            } catch (JsonProcessingException | JsonPatchException e) {
+                log.error("Error updating product {}", bookId, e);
+                return null;
+            }
+        } else {
+            return null;
+        }
+
     }
 
     @Override
     public Book updateBook(String bookId, BookDto updateRequest) {
-        return null;
+        Book book = repository.getById(Long.valueOf(bookId));
+        if (book != null) {
+            book.update(updateRequest);
+            repository.save(book);
+            return book;
+        } else {
+            return null;
+        }
     }
 }

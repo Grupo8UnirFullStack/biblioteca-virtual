@@ -3,7 +3,6 @@ package com.unir.library.data;
 import com.unir.library.data.utils.SearchCriteria;
 import com.unir.library.data.utils.SearchOperation;
 import com.unir.library.data.utils.SearchStatement;
-import com.unir.library.model.pojo.Auth;
 import com.unir.library.model.pojo.Book;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -52,4 +51,15 @@ public class BookRepository {
         }
         return repository.findAll(spec);
     }
+
+
+    public Book save(Book book) {
+        return repository.save(book);
+    }
+
+    public void delete(Book book) {
+        repository.delete(book);
+    }
+
+
 }

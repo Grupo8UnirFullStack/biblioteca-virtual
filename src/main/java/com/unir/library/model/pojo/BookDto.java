@@ -14,5 +14,7 @@ public class BookDto {
     private String description;
     private Integer year;
     private Integer stock;
-    private Auth auth;
+    private Integer authid;
+    private Integer imageid;
+    private Integer genderid;
 }

@@ -40,4 +40,16 @@ public class Book {
 
     @JoinColumn(name = "genderid", referencedColumnName = "id")
     private Integer genderid;
+
+
+    public void update(BookDto bookDto) {
+        this.title = bookDto.getTitle();
+        this.isbn = bookDto.getIsbn();
+        this.description = bookDto.getDescription();
+        this.year = bookDto.getYear();
+        this.stock = bookDto.getStock();
+        this.imageid = bookDto.getImageid();
+        this.authid = bookDto.getAuthid();
+        this.genderid = bookDto.getGenderid();
+    }
 }
